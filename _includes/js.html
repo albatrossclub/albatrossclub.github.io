@@ -1,0 +1,66 @@
+ <!-- jQuery Version 1.11.0 -->
+    <script src="{{ "/js/jquery.js" | prepend: site.baseurl }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{ "/js/jquery.easing.min.js" | prepend: site.baseurl }}"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ "/js/grayscale.js" | prepend: site.baseurl }}"></script>
+
+        <script type="text/javascript">
+    /**
+     * Author: Heather Corey
+     * jQuery Simple Parallax Plugin
+     *
+     */
+     
+    (function($) {
+     
+        $.fn.parallax = function(options) {
+     
+            var windowHeight = $(window).height();
+     
+            // Establish default settings
+            var settings = $.extend({
+                speed        : 0.15
+            }, options);
+     
+            // Iterate over each object in collection
+            return this.each( function() {
+     
+                // Save a reference to the element
+                var $this = $(this);
+     
+                // Set up Scroll Handler
+                $(document).scroll(function(){
+     
+                        var scrollTop = $(window).scrollTop();
+                            var offset = $this.offset().top;
+                            var height = $this.outerHeight();
+     
+                // Check if above or below viewport
+                if (offset + height <= scrollTop || offset >= scrollTop + windowHeight) {
+                    return;
+                }
+     
+                var yBgPosition = Math.round((offset - scrollTop) * settings.speed);
+     
+                     // Apply the Y Background Position to Set the Parallax Effect
+                    $this.css('background-position-y', yBgPosition + 'px');
+                    
+                });
+            });
+        }
+    }(jQuery));
+
+    $('.para-1,.para-2,.para-3').parallax({
+        speed : 0.35
+    });
+
+    $(document).ready(function() {
+	    $('.intro').fadeTo(4000,1);
+	});
+    </script>

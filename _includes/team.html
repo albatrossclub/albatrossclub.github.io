@@ -1,0 +1,67 @@
+    <!-- Contact Section -->
+    <section id="team" class="container content-section text-center" style="padding-top:75px;">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Meet the team</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for page in site.categories.people-profiles %}
+            {% if page.type == 'exec' %}
+            <div class="col-xs-12 col-sm-4">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="{{page.image-path}}"/>
+                    </div>
+                    <div class="team-title">
+                        {{page.name}}
+                    </div>
+                    <div class="team-desc">
+                        {{page.excerpt}}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            <div class="row" style="padding-top:20px;">
+            <a class="btn btn-primary" id="meet-rest" onclick="javascript:$('#hidden-people').slideDown();$('#meet-rest').fadeOut();">Meet the rest</a>
+            <div id="hidden-people" style="display:none;">
+            
+            {% for page in site.categories.people-profiles %}
+            {% assign loopindex = forloop.index0 | modulo: 3 %}
+            {% if loopindex == 0 %}
+            <div class="row" style="padding-top:20px;">
+            {% endif %}
+            {% if page.type != 'exec' %}
+            <div class="col-xs-12 col-sm-4">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="{{page.image-path}}"/>
+                    </div>
+                    <div class="team-title">
+                        {{page.name}}
+                    </div>
+                    <div class="team-desc">
+                        {{page.excerpt}}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if loopindex == 2 %}
+                </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <ul class="list-inline banner-social-buttons">
+                    {% for network in site.social %}
+                    <li>
+                        <a href="{{ network.url }}" class="btn btn-default btn-lg"><i class="fa fa-{{ network.title }} fa-fw"></i> <span class="network-name">{{ network.title }}</span></a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
