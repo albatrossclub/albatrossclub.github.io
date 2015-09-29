@@ -8,50 +8,57 @@
         <div class="row">
             {% for page in site.categories.people-profiles %}
             {% if page.type == 'exec' %}
-            <div class="col-xs-12 col-sm-4">
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="{{page.image-path}}"/>
-                    </div>
-                    <div class="team-title">
-                        {{page.name}}
-                    </div>
-                    <div class="team-desc">
-                        {{page.excerpt}}
-                    </div>
-                </div>
+            <div class=" col-xs-12 col-sm-4">
+            <div class="card">
+              <div class="card-block">
+                <h4 class="card-title">{{page.name}}</h4>
+                <h6 class="card-subtitle text-muted">{{page.role}}</h6>
+              </div>
+              <img width="100%" src="{{page.image-path}}" alt="{{page.name}}" style="box-shadow:-1px 0px 50px #000 inset;">
+              <div class="card-block">
+                <p class="card-text">{{page.excerpt}}</p>
+                {% if page.twitter %}
+                <a href="https://twitter.com/{{page.twitter}}" class="card-link">Twitter</a>
+                {% endif %}
+                <!--a href="#" class="card-link">Another link</a-->
+              </div>
+            </div>
             </div>
             {% endif %}
             {% endfor %}
             </div>
             <div class="row" style="padding-top:20px;">
-            <a class="btn btn-primary" id="meet-rest" onclick="javascript:$('#hidden-people').slideDown();$('#meet-rest').fadeOut();">Meet the rest</a>
+            <a class="btn btn-primary" id="meet-rest" onclick="javascript:$('#meet-rest').fadeOut();$('#hidden-people').slideDown();">More team members</a>
+            {% assign counter-people = 0 %}
             <div id="hidden-people" style="display:none;">
-            
-            {% for page in site.categories.people-profiles %}
-            {% assign loopindex = forloop.index0 | modulo: 3 %}
-            {% if loopindex == 0 %}
-            <div class="row" style="padding-top:20px;">
-            {% endif %}
-            {% if page.type != 'exec' %}
-            <div class="col-xs-12 col-sm-4">
-                <div class="team-card">
-                    <div class="team-image">
-                        <img src="{{page.image-path}}"/>
-                    </div>
-                    <div class="team-title">
-                        {{page.name}}
-                    </div>
-                    <div class="team-desc">
-                        {{page.excerpt}}
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% if loopindex == 2 %}
-                </div>
-            {% endif %}
-            {% endfor %}
+                {% for page in site.categories.people-profiles %}
+                    {% if page.type != 'exec' %}
+                        {% assign counter-people = counter-people | plus: 1 %}
+                        {% assign rowfinder = counter-people | modulo: 3 %}
+                        {% if rowfinder == 1 %}
+                        <div class="row" style="padding-top:20px;">
+                        {% endif %}
+                        <div class=" col-xs-12 col-sm-4">
+                        <div class="card">
+                          <div class="card-block">
+                            <h4 class="card-title">{{page.name}}</h4>
+                            <h6 class="card-subtitle text-muted">{{page.role}}</h6>
+                          </div>
+                          <img width="100%" src="{{page.image-path}}" alt="{{page.name}}" style="box-shadow:-1px 0px 50px #000 inset;">
+                          <div class="card-block">
+                            <p class="card-text">{{page.excerpt}}</p>
+                            {% if page.twitter %}
+                            <a href="https://twitter.com/{{page.twitter}}" class="card-link">Twitter</a>
+                            {% endif %}
+                            <!--a href="#" class="card-link">Another link</a-->
+                          </div>
+                        </div>
+                        </div>
+                        {% if rowfinder == 0 %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
         <div class="row">
