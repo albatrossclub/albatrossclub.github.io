@@ -3,7 +3,7 @@ layout: profile
 name: Camilla Henderson
 is-profile: true
 role: Head of Events
-image-path: /images/Red-hat.jpg
+image-path: /img/Red-hat.jpg
 excerpt: Camilla is daughter of Champion National Hunt trainer Nicky Henderson, and has been directly or indirectly involved within the racing industry her whole life. It's in her blood.
 twitter: camillahendo
 ---
