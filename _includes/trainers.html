@@ -1,0 +1,35 @@
+    <!-- Contact Section -->
+    <section id="trainers" class="container content-section text-center" style="padding-top:75px;">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Meet the trainers</h2>
+            </div>
+        </div>
+        <div class="row">
+            {% for page in site.categories.people-profiles %}
+            {% if page.type == 'trainer' %}
+            <div class=" col-xs-12 col-sm-4">
+            <div class="card">
+              <div class="card-block">
+                <h4 class="card-title">{{page.name}}</h4>
+                <h6 class="card-subtitle text-muted">{{page.role}}</h6>
+              </div>
+              {% if page.image-path %}
+              <img width="100%" src="{{page.image-path}}" alt="{{page.name}}" style="box-shadow:-1px 0px 50px #000 inset;">
+              {% endif %}
+              <div class="card-block">
+                <p class="card-text">{{page.excerpt}}</p>
+                {% if page.twitter %}
+                <a href="https://twitter.com/{{page.twitter}}" class="card-link">Twitter</a>
+                {% endif %}
+                <!--a href="#" class="card-link">Another link</a-->
+              </div>
+            </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            </div>
+            
+            </div>
+        </div>
+    </section>

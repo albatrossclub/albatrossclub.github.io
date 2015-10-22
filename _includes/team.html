@@ -14,7 +14,9 @@
                 <h4 class="card-title">{{page.name}}</h4>
                 <h6 class="card-subtitle text-muted">{{page.role}}</h6>
               </div>
+              {% if page.image-path %}
               <img width="100%" src="{{page.image-path}}" alt="{{page.name}}" style="box-shadow:-1px 0px 50px #000 inset;">
+              {% endif %}
               <div class="card-block">
                 <p class="card-text">{{page.excerpt}}</p>
                 {% if page.twitter %}
@@ -44,7 +46,9 @@
                             <h4 class="card-title">{{page.name}}</h4>
                             <h6 class="card-subtitle text-muted">{{page.role}}</h6>
                           </div>
+                          {% if page.image-path %}
                           <img width="100%" src="{{page.image-path}}" alt="{{page.name}}" style="box-shadow:-1px 0px 50px #000 inset;">
+                          {% endif %}
                           <div class="card-block">
                             <p class="card-text">{{page.excerpt}}</p>
                             {% if page.twitter %}
